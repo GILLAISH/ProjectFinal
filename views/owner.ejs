@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Owner | Coworking</title>
+    <%- include('partials/head'); %>
+</head>
+<body class="bg-gray-50">
+    <nav>
+        <%- include('partials/nav'); %>
+    </nav>
+
+    <div class="max-w-7xl px-6 lg:px-0 mx-auto mt-6">
+        <h1 class="text-xl font-semibold text-green-800">Properties</h1>
+        <div class="mt-2 border-b-2 border-gray-400 border-dashed"></div>
+        <div class="mt-6 text-green-800">
+            <a class="px-2 py-1 hover:text-white hover:bg-green-800 text-sm border border-green-800" href="/owner/property/create">+ Add Property</a> <a class="ml-2 px-2 py-1 hover:text-white hover:bg-green-800 text-sm border border-green-800" href="/owner/workspace/create">+ Add Workspace</a>
+        </div>
+
+        <div>
+            <% if(Properties !== undefined && Properties.length) { %>
+                <% Properties.forEach(property => { %>
+                    <div class="mt-6 border border-gray-400 p-2">
+                        <h2 class="text-green-800 text-lg font-semibold"><span class="text-xs px-2 py-1 rounded text-white bg-green-800">Property</span> <%= property.address %><a class="ml-4 px-2 py-1 text-gray-800 hover:text-white hover:bg-gray-800 text-xs border border-gray-800" href="/owner/property/<%= property.id %>/edit">+ Edit</a> <a class="px-2 py-1 text-red-800 hover:text-white hover:bg-red-800 text-xs border border-red-800" href="/owner/property/<%= property.id %>/delete">- Delete</a></h2>
+                        <div class="mt-2 flex items-center border-t border-b border-dashed border-gray-400">
+                            <p class="p-2 w-1/2 border-r border-dashed border-gray-400">Neighborhood: <span class="font-semibold"><%= property.neighborhood %></span></p>
+                            <p class="p-2 w-1/2">Area: <span class="font-semibold"><%= property.area %></span></p>
+                        </div>
+                        <div class="flex items-center border-b border-dashed border-gray-400">
+                            <p class="p-2 w-1/2 border-r border-dashed border-gray-400">Garage Access: <span class="font-semibold"><%= property.garage %></span></p>
+                            <p class="p-2 w-1/2">Transit Nearby: <span class="font-semibold"><%= property.transit %></span></p>
+                        </div>
+
+                        <div>
+                            <% if(property.hasOwnProperty('workspaces')) { %>
+                                <% property.workspaces.forEach(workspace => { %>
+                                    <div class="mt-2 ml-2">
+                                        <h2 class="text-green-800 text-lg font-semibold"><span class="text-xs px-2 py-1 rounded text-white bg-pink-800">Workspace</span> <%= workspace.type %><a class="ml-4 px-2 py-1 text-gray-800 hover:text-white hover:bg-gray-800 text-xs border border-gray-800" href="/owner/workspace/<%= workspace.id %>/edit">+ Edit</a> <a class="px-2 py-1 text-red-800 hover:text-white hover:bg-red-800 text-xs border border-red-800" href="/owner/workspace/<%= workspace.id %>/delete">- Delete</a></h2>
+                                        <div class="mt-2 flex items-center border-t border-b border-dashed border-gray-400">
+                                            <p class="p-2 w-1/2 border-r border-dashed border-gray-400">Location: <span class="font-semibold"><%= workspace.location %></span></p>
+                                            <p class="p-2 w-1/2">Seats: <span class="font-semibold"><%= workspace.seats %></span></p>
+                                        </div>
+                                        <div class="flex items-center border-b border-dashed border-gray-400">
+                                            <p class="p-2 w-1/2 border-r border-dashed border-gray-400">Smoking: <span class="font-semibold"><%= workspace.smoking %></span></p>
+                                            <p class="p-2 w-1/2">Availability: <span class="font-semibold"><%= workspace.availability %></span></p>
+                                        </div>
+                                        <div class="flex items-center border-b border-dashed border-gray-400">
+                                            <p class="p-2 w-1/2 border-r border-dashed border-gray-400">Term: <span class="font-semibold"><%= workspace.term %></span></p>
+                                            <p class="p-2 w-1/2">Price: <span class="font-semibold"><%= workspace.price %></span></p>
+                                        </div>
+                                    </div>
+                                <% }) %>
+                            <% } %>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                    <h1 class="my-12 text-center text-xl font-semibold">No Properties Available</h1>
+                <% } %>
+        </div>
+    </div>
+
+    <footer>
+        <%- include('partials/footer') %>
+    </footer>
+</body>
+</html>

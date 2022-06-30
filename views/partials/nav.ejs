@@ -1,0 +1,16 @@
+<div class="h-16 border-b border-gray-300 shadow-sm bg-gray-100">
+    <div class="max-w-7xl px-3 lg:px-0 mx-auto flex items-center justify-between h-full">
+        <a href="/" class="flex items-center text-green-800">
+            <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M2 22h20M21 6c0-2.21-1-4-4-4H7C4 2 3 3.79 3 6v16h18V10.02M7 16.5h3M14 16.5h3M7 12h3M14 12h3M7 7.5h3M14 7.5h3"></path>
+            </svg>
+            <span class="ml-2 font-semibold">Coworking</span>
+        </a>
+
+        <div class="flex gap-3">
+            <% navItems.forEach(function (value, index) { %>
+                <a class="text-sm" href="<%= navPaths[index] %>"><%= value %></a>
+            <% }) %>
+        </div>
+    </div>
+</div>

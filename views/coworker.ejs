@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Coworker | Coworking</title>
+    <%- include('partials/head'); %>
+</head>
+<body class="bg-gray-50">
+    <nav>
+        <%- include('partials/nav'); %>
+    </nav>
+
+    <div class="max-w-7xl px-6 lg:px-0 mx-auto mt-6">
+        <h1 class="text-xl font-semibold text-green-800">Search</h1>
+        <div class="mt-2 border-b-2 border-gray-400 border-dashed"></div>
+
+        <div class="mt-6 border border-gray-400 p-2">
+            <h1 class="font-semibold">Query Type:</h1>
+            <div class="mt-2 flex flex-col lg:flex-row gap-2 lg:gap-4">
+                <div class="w-full lg:w-auto">
+                    <input type="radio" name="type" id="address" value="address" checked>
+                    <label for="address">Address</label>
+                </div>
+                <div class="w-full lg:w-auto">
+                    <input type="radio" name="type" id="neighborhood" value="neighborhood">
+                    <label for="neighborhood">Neighborhood</label>
+                </div>
+                <div class="w-full lg:w-auto">
+                    <input type="radio" name="type" id="area" value="area">
+                    <label for="area">Area</label>
+                </div>
+                <div class="w-full lg:w-auto">
+                    <input type="radio" name="type" id="garage" value="garage">
+                    <label for="garage">Garage</label>
+                </div>
+                <div class="w-full lg:w-auto">
+                    <input type="radio" name="type" id="transit" value="transit">
+                    <label for="transit">Transit</label>
+                </div>
+            </div>
+
+            <h1 class="mt-4 font-semibold">Query Text: <span class="text-xs">(For Garage & Transit - Type Yes/No)</span></h1>
+            <div class="mt-2 flex flex-col lg:flex-row gap-2">
+                <input class="w-full border border-green-800 px-2 py-1" type="text" name="text" id="text" placeholder="Type something to search...">
+                <button type="button" id="search" class="px-4 py-1 bg-green-800 hover:bg-green-900 text-white w-full lg:w-auto">Search</button>
+            </div>
+        </div>
+
+        <h1 class="text-xl mt-12 font-semibold text-green-800">Properties</h1>
+        <div class="mt-2 border-b-2 border-gray-400 border-dashed"></div>
+
+        <div>
+            <% if(Spaces !== undefined && Spaces.length) { %>
+                <% Spaces.forEach(space => { %>
+                    <% space.properties.forEach(property => { %>
+                        <div class="mt-6 border border-gray-400 p-2">
+                            <h2 class="text-green-800 text-lg font-semibold"><span class="text-xs px-2 py-1 rounded text-white bg-green-800">Property</span> <%= property.address %></h2>
+                            <div class="mt-2 flex items-center border-t border-b border-dashed border-gray-400">
+                                <p class="p-2 w-1/2 border-r border-dashed border-gray-400">Owner: <span class="font-semibold"><%= space.name %> (<%= space.email %>)</span></p>
+                                <p class="p-2 w-1/2">Owner Phone: <span class="font-semibold"><%= space.phone %></span></p>
+                            </div>
+                            <div class="flex items-center border-b border-dashed border-gray-400">
+                                <p class="p-2 w-1/2 border-r border-dashed border-gray-400">Neighborhood: <span class="font-semibold"><%= property.neighborhood %></span></p>
+                                <p class="p-2 w-1/2">Area: <span class="font-semibold"><%= property.area %></span></p>
+                            </div>
+                            <div class="flex items-center border-b border-dashed border-gray-400">
+                                <p class="p-2 w-1/2 border-r border-dashed border-gray-400">Garage Access: <span class="font-semibold"><%= property.garage %></span></p>
+                                <p class="p-2 w-1/2">Transit Nearby: <span class="font-semibold"><%= property.transit %></span></p>
+                            </div>
+
+                            <div>
+                                <% if(property.hasOwnProperty('workspaces')) { %>
+                                    <% property.workspaces.forEach(workspace => { %>
+                                        <div class="mt-2 ml-2">
+                                            <h2 class="text-green-800 text-lg font-semibold"><span class="text-xs px-2 py-1 rounded text-white bg-pink-800">Workspace</span> <%= workspace.type %></h2>
+                                            <div class="mt-2 flex items-center border-t border-b border-dashed border-gray-400">
+                                                <p class="p-2 w-1/2 border-r border-dashed border-gray-400">Location: <span class="font-semibold"><%= workspace.location %></span></p>
+                                                <p class="p-2 w-1/2">Seats: <span class="font-semibold"><%= workspace.seats %></span></p>
+                                            </div>
+                                            <div class="flex items-center border-b border-dashed border-gray-400">
+                                                <p class="p-2 w-1/2 border-r border-dashed border-gray-400">Smoking: <span class="font-semibold"><%= workspace.smoking %></span></p>
+                                                <p class="p-2 w-1/2">Availability: <span class="font-semibold"><%= workspace.availability %></span></p>
+                                            </div>
+                                            <div class="flex items-center border-b border-dashed border-gray-400">
+                                                <p class="p-2 w-1/2 border-r border-dashed border-gray-400">Term: <span class="font-semibold"><%= workspace.term %></span></p>
+                                                <p class="p-2 w-1/2">Price: <span class="font-semibold"><%= workspace.price %></span></p>
+                                            </div>
+                                        </div>
+                                    <% }) %>
+                                <% } %>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% }) %>
+            <% } else { %>
+                    <h1 class="my-12 text-center text-xl font-semibold">No Properties Available</h1>
+                <% } %>
+        </div>
+    </div>
+
+    <footer>
+        <%- include('partials/footer') %>
+    </footer>
+
+    <script>
+        $(document).ready(function (){
+           $('#search').click(function (){
+               window.location.href = `/search?${$('input[name="type"]:checked').val()}=${$('#text').val()}`;
+           })
+        });
+    </script>
+</body>
+</html>

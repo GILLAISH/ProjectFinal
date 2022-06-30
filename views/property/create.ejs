@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Create Property | Coworking</title>
+    <%- include('../partials/head'); %>
+</head>
+<body class="bg-gray-50">
+    <nav>
+        <%- include('../partials/nav'); %>
+    </nav>
+
+    <div class="flex flex-col max-w-7xl px-6 lg:px-0 mx-auto h-full mt-6 items-center justify-center">
+        <div class="w-full lg:w-1/3">
+            <h1 class="text-3xl font-semibold">Create Property</h1>
+            <form class="p-4 bg-gray-100 border border-gray-300 shadow-lg rounded-lg mt-4" action="/owner/property/create" method="POST">
+                <label class="block" for="address">Address</label>
+                <input class="border border-gray-300 rounded w-full mt-2 px-2 py-1" type="text" name="address" id="address" required>
+                <label class="mt-4 block" for="neighborhood">Neighborhood</label>
+                <input class="border border-gray-300 rounded w-full mt-2 px-2 py-1" type="text" name="neighborhood" id="neighborhood" required>
+                <label class="mt-4 block" for="area">Area (Sq. Feet)</label>
+                <input class="border border-gray-300 rounded w-full mt-2 px-2 py-1" type="text" name="area" id="area" required>
+                <label class="mt-4 block">Garage Access:</label>
+                <input class="mt-2" type="radio" name="garage" id="garage_yes" value="yes" checked>
+                <label class="text-sm font-semibold" for="garage_yes">Yes</label>
+                <input class="ml-6" type="radio" name="garage" id="garage_no" value="no">
+                <label class="text-sm font-semibold" for="garage_no">No</label>
+                <label class="mt-4 block">Nearby Transit Access:</label>
+                <input class="mt-2" type="radio" name="transit" id="transit_yes" value="yes" checked>
+                <label class="text-sm font-semibold" for="transit_yes">Yes</label>
+                <input class="ml-6" type="radio" name="transit" id="transit_no" value="no">
+                <label class="text-sm font-semibold" for="transit_no">No</label>
+                <div class="mt-4">
+                    <input class="text-white bg-green-700 hover:bg-green-800 py-2 px-4 rounded-lg font-semibold" type="submit">
+                    <input class="text-red-800 bg-gray-200 ml-3 hover:bg-gray-300 py-2 px-4 rounded-lg font-semibold" type="reset">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <%- include('../partials/footer') %>
+    </footer>
+</body>
+</html>

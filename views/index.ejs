@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Coworking</title>
+    <%- include('partials/head'); %>
+</head>
+<body class="bg-gray-50">
+    <nav>
+        <%- include('partials/nav'); %>
+    </nav>
+
+    <div class="flex flex-col lg:flex-row max-w-7xl px-3 lg:px-0 mx-auto mt-6 gap-y-6 lg:gap-y-0 lg:gap-x-6" style="height: 80vh;">
+        <div class="flex w-full lg:w-1/2 rounded-3xl bg-gray-200 items-stretch h-1/2 lg:h-full" style="background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=853&q=80'); background-position: center; background-size: cover;"></div>
+        <div class="flex flex-col w-full lg:w-1/2 h-full items-center justify-center">
+            <h1 class="text-5xl font-semibold text-green-700">Welcome</h1>
+            <p class="text-lg text-gray-700 text-center my-4">We are coworking shared workspaces provider. You can choose to login or register as an Owner or Coworker.</p>
+            <div class="text-center">
+                <a class="text-white bg-green-700 hover:bg-green-800 py-2 px-4 rounded-lg font-semibold" href="/login">Login</a>
+                <a class="bg-gray-200 ml-3 hover:bg-gray-300 py-2 px-4 rounded-lg font-semibold" href="/register">Register</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <%- include('partials/footer') %>
+    </footer>
+</body>
+</html>
